@@ -2,6 +2,8 @@ body {
     font-family: 'Courier New', monospace;
     background-color: black;
     color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff00;
     margin: 0;
     padding: 0;
     display: flex;
@@ -41,7 +43,12 @@ header {
     color: #00ff00;
     font-family: 'Courier New', monospace;
 }
-
+#subtitle {
+    font-size: 24px;
+    color: #00ff00;
+    margin-top: -20px; 
+    margin-left: 25%;
+}
 #output {
     white-space: pre-wrap;
     word-wrap: break-word;
