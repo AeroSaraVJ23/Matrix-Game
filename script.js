@@ -1,6 +1,8 @@
 import students from './students.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    
+
     const output = document.getElementById('output');
     const userInput = document.getElementById('user-input');
     let stage = 1;
@@ -8,10 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let userNumber = "";
     let userGroup = null; // Store the user's group number
     matrixEffect();
-
     // Fix the terminal height after some point
-    output.style.maxHeight = "400px";
-    output.style.overflowY = "auto";
+    // output.style.maxHeight = "600px";
+    // output.style.overflowY = "auto";
 
     const stages = {
         1: stage1Choice,
