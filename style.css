@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    color: green;
+    color: #00ff00;
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     display: flex;
@@ -9,7 +9,12 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-
+#subtitle {
+    font-size: 24px;
+    color: #00ff00;
+    margin-top: -20px; 
+    margin-left: 25%;
+}
 #output {
     width: 80%;
     height: 70%;
