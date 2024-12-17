@@ -57,6 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
             output.scrollTop = output.scrollHeight;
         });
     }
+    function printToTerminalIcon(text) {
+        // Assuming 'output' is the container element where content is printed
+        const output = document.getElementById('output'); 
+    
+        // Append the text as HTML content (innerHTML)
+        typewriterEffect(text, () => {
+            output.innerHTML += `<i class="fa-solid fa-bullhorn">${text}</i>`;  // Adds the <i> tag around text
+            output.scrollTop = output.scrollHeight;
+        });
+    }
+    
 
     // Function to set the terminal prompt format (user_number@matrix$:)
     function setTerminalPrompt() {
@@ -84,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             printToTerminal("Morpheus: You chose comfort over truth. The game ends here.\n");
             resetGame();
         } else {
-            printToTerminal("Morpheus: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
+            printToTerminal("Morpheus: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. \n\nChoose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
         }
     }
 

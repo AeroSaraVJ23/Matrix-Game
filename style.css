@@ -61,10 +61,12 @@ header {
     margin-top: 20px;
     color: #b8e994;
     font-family: 'Courier New', monospace;
+    font-size: larger;
+    z-index: 1;
 }
 #subtitle {
     font-size: 24px;
-    color: #00ff00;
+    color:  #b8e994;
     margin-top: -20px; 
     margin-left: 15%;
 }
@@ -102,18 +104,6 @@ header {
 
 }
 
-#terminal1 {
-    width: 80%;
-    max-width: 700px;
-    background-color: #111;
-    border: 2px solid #00ff00;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    margin-right: 10%;
-}
 
 #terminal1 {
     width: 50%;
@@ -124,9 +114,11 @@ header {
     box-sizing: border-box;
     border-radius: 10px;
     margin-top: 20px;
-    color: #00ff00;
+    color:  #b8e994;
     font-family: 'Courier New', monospace;
     display: inline;
+    margin-right: 10%;
+    z-index: 1;
 }
 #output1 {
     white-space: pre-wrap;
@@ -168,7 +160,7 @@ header {
 }
 
 /* Animation for the Matrix-like effect */
-body:after {
+/* body:after {
     content: '';
     position: absolute;
     top: 0;
@@ -188,7 +180,7 @@ body:after {
 @keyframes matrix-fall {
     0% { background-position: 0 0; }
     100% { background-position: 0 100%; }
-}
+}  */
 
 
 
