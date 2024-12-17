@@ -42,6 +42,7 @@ header {
     }
 }
 
+
 .matrix {
     width: 100%;
     display: flex;
@@ -58,7 +59,7 @@ header {
     box-sizing: border-box;
     border-radius: 10px;
     margin-top: 20px;
-    color: #00ff00;
+    color: #b8e994;
     font-family: 'Courier New', monospace;
 }
 #subtitle {
