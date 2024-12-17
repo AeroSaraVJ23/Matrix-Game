@@ -79,18 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stage2Challenges(input) {
         if (!input) {
-            printToTerminal("Agent Smith: The truth is hidden in the fabric of your machine. Decode this sequence:\n87 51 49 67 48 77 51\nEnter the decoded text:\n");
+            printToTerminal("Agent Smith: The truth is hidden in the fabric of your machine. Decode this sequence:\n87 51 49 67 48 77 51\n(Morpheus: Binary world relies on ASCII)\nEnter the decoded text:\n");
         } else if (input === "W31C0M3" && fragments.length === 0) {
             printToTerminal("Correct! Fragment collected: W31C0M3\n\n");
             fragments.push("W31C0M3");
-            printToTerminal("Agent Smith: Letters can also be numbers. Solve this:\n(B + E - L) * (M - A) = ?\n");
+            printToTerminal("Agent Smith: Letters can also be numbers. Solve this:\n((S - A) + (H / 12)) / (M - A) = ?\n");
         } else if (input === "2" && fragments.length === 1) {
             printToTerminal("Correct! Fragment collected: 2\n\n");
             fragments.push("2");
-            printToTerminal("Agent Smith: The truth has been scrambled. Correct the binary and decode this:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n");
-        } else if (input === "P3R4 C0M" && fragments.length === 2) {
+            printToTerminal("Agent Smith: The truth has been scrambled. Correct the binary and decode this:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n\n(Morpheus: Right shift the binary numbers to reveal the secrets from the world of ASCII)");
+        } else if (input === "P3R4C0M" && fragments.length === 2) {
             printToTerminal("Correct! Fragment collected: P3R4 C0M\n\n");
-            fragments.push("P3R4 C0M");
+            fragments.push("P3R4C0M");
             stage = 3;
             stage3Final();
         } else {
