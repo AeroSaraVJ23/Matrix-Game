@@ -1,188 +1,314 @@
 body {
-    font-family: 'Courier New', monospace;
-    background-color: black;
-    color: #00ff00;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00ff00;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+  font-family: "Courier New", monospace;
+  background-color: black;
+  color: #00ff00;
+  font-family: "Courier New", Courier, monospace;
+  color: #00ff00;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 header {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
-
 
 /* Title Animation */
 #title {
-    color: #00ff00;
-    font-size: 0.5rem;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-shadow: 0 0 10px #00ff00;
-    margin: 0;
-    transform: scale(1);
-    animation: growTitle 3s ease-in-out infinite;
+  color: #00ff00;
+  font-size: 0.5rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-shadow: 0 0 10px #00ff00;
+  margin: 0;
+  transform: scale(1);
+  animation: growTitle 3s ease-in-out infinite;
 }
 
 @keyframes growTitle {
-    0%, 100% {
-        transform: scale(1);
-        text-shadow: 0 0 10px #00ff00;
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #00ff00;
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+  }
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  #title {
+    font-size: 0.3rem !important; /* Enforce smaller size */
+    line-height: 1.1 !important;
+    transform: scale(1) !important; /* Reset base scale */
+    text-shadow: 0 0 5px #00ff00 !important;
+    animation: bounceGlow 2s infinite alternate ease-in-out; /* Bounce and glow */
+  }
+
+  @keyframes bounceGlow {
+    0% {
+      transform: translateY(0) scale(1);
+      text-shadow: 0 0 5px #00ff00;
     }
     50% {
-        transform: scale(1.1);
-        text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+      transform: translateY(-10px) scale(1.05); /* Slight upward bounce */
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
     }
+    100% {
+      transform: translateY(0) scale(1);
+      text-shadow: 0 0 5px #00ff00;
+    }
+  }
 }
 
+/* Ensure proper container scaling */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
 .matrix {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
+/* Set the second terminal container as the relative reference */
 #terminal {
-    width: 90%;
-    max-width: 700px;
-    background-color: #111;
-    border: 2px solid #00ff00;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin-top: 20px;
-    color: #b8e994;
-    font-family: 'Courier New', monospace;
-    font-size: larger;
-    z-index: 1;
+  position: relative; /* Establish positioning context for the hint icon */
+  width: 90%;
+  max-width: 700px;
+  background-color: rgba(17, 17, 17, 0.7);
+  border: 2px solid #00ff00;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: #b8e994;
+  font-family: "Courier New", monospace;
+  font-size: larger;
+  z-index: 1;
 }
+
+/* Hint button positioned at the bottom-left corner */
+#hint-button-terminal {
+  position: absolute; /* Relative to #terminal */
+  bottom: 0px; /* Distance from the bottom */
+  left: 50%; /* Distance from the left */
+  background-color: transparent; /* No background */
+  padding-top: 20px;
+  margin-bottom: 5px;
+  border: none; /* No border */
+  color: #00ff00; /* Matrix green */
+  font-size: 24px; /* Adjust icon size */
+  cursor: pointer; /* Pointer on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+#hint-button-terminal:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
 #subtitle {
-    font-size: 24px;
-    color:  #b8e994;
-    margin-top: -20px; 
-    margin-left: 15%;
-}
-#output {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin-bottom: 10px;
-}
-
-#input-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-#user-input {
-    background-color: black;
-    color: #00ff00;
-    border: none;
-    width: 100%;
-    font-size: 1rem;
-    padding: 10px;
-    margin-left: 5px;
-    outline: none;
-}
-
-#user-input:focus {
-    border: none;
-    outline: none;
-}
-.parent-container {
-    display: flex;
-    justify-content: flex-start; /* Align child elements to the left */
-    align-items: flex-start;
-
-}
-
-
-#terminal1 {
-    width: 50%;
-    max-width: 700px;
-    background-color: #111;
-    border: 2px solid #00ff00;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin-top: 20px;
-    color:  #b8e994;
-    font-family: 'Courier New', monospace;
-    display: inline;
-    margin-right: 10%;
-    z-index: 1;
-}
-#output1 {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin-bottom: 10px;
-}
-
-#input-container1 {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-#user-input1 {
-    background-color: black;
-    color: #00ff00;
-    border: none;
-    width: 100%;
-    font-size: 1rem;
-    padding: 10px;
-    margin-left: 5px;
-    outline: none;
-}
-
-#user-input1:focus {
-    border: none;
-    outline: none;
+  font-size: 20px;
+  color: #b8e994;
+  margin-top: -20px;
+  margin-left: 15%;
 }
 
 @media (max-width: 768px) {
-    #title {
-        font-size: 1.2rem;
-    }
-
-    #terminal {
-        width: 95%;
-        margin-top: 10px;
-    }
+  #subtitle {
+    font-size: 14px; /* Smaller font size for mobile view */
+    margin-left: 12%; /* Adjust margin for better alignment */
+    margin-top: -10px; /* Slightly reduce top margin */
+  }
 }
 
-/* Animation for the Matrix-like effect */
-/* body:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        rgba(0, 255, 0, 0.1),
-        rgba(0, 255, 0, 0.2) 2px,
-        transparent 3px
-    );
-    pointer-events: none;
-    z-index: 0;
-    animation: matrix-fall 10s linear infinite;
+#output {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 10px;
 }
 
-@keyframes matrix-fall {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100%; }
-}  */
+#input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
+#user-input {
+  background-color: black;
+  color: #00ff00;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+}
 
+#user-input:focus {
+  border: none;
+  outline: none;
+}
+.parent-container {
+  display: flex;
+  justify-content: flex-start; /* Align child elements to the left */
+  align-items: flex-start;
+}
 
+#terminal1 {
+  width: 50%;
+  max-width: 700px;
+  background-color: rgba(17, 17, 17, 0.7);
+  border: 2px solid #00ff00;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: #b8e994;
+  font-family: "Courier New", monospace;
+  display: inline;
+  margin-right: 10%;
+  z-index: 1;
+}
+#output1 {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
 
+#input-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
+#user-input1 {
+  background-color: black;
+  color: #00ff00;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  margin-left: 5px;
+  outline: none;
+  display: none;
+}
+
+#user-input1:focus {
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  #title {
+    font-size: 1.2rem;
+  }
+
+  #terminal {
+    width: 95%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .parent-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 10px; /* Add space between terminals */
+  }
+
+  #terminal1,
+  #terminal {
+    width: 95%; /* Make both terminals take full width */
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px; /* Add bottom margin for spacing */
+  }
+
+  #terminal1 {
+    margin-top: 10px; /* Slight spacing at the top */
+  }
+
+  #hint-button-terminal {
+    bottom: -5px; /* Adjust button positioning for better appearance */
+  }
+}
+
+.centered-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: start;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+/* Top-Right Neo/Morpheus Container */
+#neo-container {
+  position: fixed; /* Fix it to the screen */
+  top: 20px; /* Position from the top */
+  right: -350px; /* Start off-screen (right) */
+  transition: right 1s ease-out; /* Smooth slide-in animation */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+#neo-image {
+  width: 100px; /* Adjust image size */
+  height: auto;
+}
+
+#instruction-bubble {
+  width: 200px; /* Wider width for better readability */
+  max-width: 100%; /* Limit the width to fit smaller screens */
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #00ff00;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  word-wrap: break-word;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  #terminal1 {
+    width: 95%; /* Adjust width for smaller screens */
+    margin-right: 0;
+  }
+
+  #hint-button {
+    top: 5px;
+    right: 5px;
+    padding: 6px 10px; /* Smaller button on small screens */
+  }
+
+  #instruction-bubble {
+    width: 90%; /* Adjust bubble width for smaller screens */
+    max-width: 90%;
+    padding: 10px 15px; /* Adjust padding */
+  }
+}
