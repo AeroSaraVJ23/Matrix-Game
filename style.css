@@ -18,10 +18,28 @@ header {
     margin-top: 50px;
 }
 
+
+/* Title Animation */
 #title {
-    font-size: 1.5rem;
+    color: #00ff00;
+    font-size: 0.5rem;
     white-space: pre-wrap;
     word-wrap: break-word;
+    text-shadow: 0 0 10px #00ff00;
+    margin: 0;
+    transform: scale(1);
+    animation: growTitle 3s ease-in-out infinite;
+}
+
+@keyframes growTitle {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #00ff00;
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+    }
 }
 
 .matrix {
@@ -47,7 +65,7 @@ header {
     font-size: 24px;
     color: #00ff00;
     margin-top: -20px; 
-    margin-left: 25%;
+    margin-left: 15%;
 }
 #output {
     white-space: pre-wrap;
@@ -76,6 +94,66 @@ header {
     border: none;
     outline: none;
 }
+.parent-container {
+    display: flex;
+    justify-content: flex-start; /* Align child elements to the left */
+    align-items: flex-start;
+
+}
+
+#terminal1 {
+    width: 80%;
+    max-width: 700px;
+    background-color: #111;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    margin-right: 10%;
+}
+
+#terminal1 {
+    width: 50%;
+    max-width: 700px;
+    background-color: #111;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    display: inline;
+}
+#output1 {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+#input-container1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#user-input1 {
+    background-color: black;
+    color: #00ff00;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    margin-left: 5px;
+    outline: none;
+}
+
+#user-input1:focus {
+    border: none;
+    outline: none;
+}
 
 @media (max-width: 768px) {
     #title {
@@ -87,3 +165,31 @@ header {
         margin-top: 10px;
     }
 }
+
+/* Animation for the Matrix-like effect */
+body:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        rgba(0, 255, 0, 0.1),
+        rgba(0, 255, 0, 0.2) 2px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: matrix-fall 10s linear infinite;
+}
+
+@keyframes matrix-fall {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+
+
+
+

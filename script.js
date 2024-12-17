@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (callback) callback();
                         resolve(); // Move to the next queued call
                     }
-                }, 50); // The speed of the typewriter effect
+                }, 10); // The speed of the typewriter effect
             });
         });
     }
@@ -66,14 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stage1Choice(input) {
         if (input === "1") {
-            printToTerminal("Morpheus: Welcome to the real world. The truth awaits....\n\n");
+            printToTerminal("Agent Smith: Welcome to the real world. The truth awaits....\n\n");
             stage = 2;
             stage2Challenges();
         } else if (input === "2") {
-            printToTerminal("Morpheus: You chose comfort over truth. The game ends here.\n");
+            printToTerminal("Agent Smith: You chose comfort over truth. The game ends here.\n");
             resetGame();
         } else {
-            printToTerminal("Morpheus: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
+            printToTerminal("Agent Smith: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
         }
     }
 
@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stage3Final(input) {
         if (!input) {
-            printToTerminal("Morpheus: You’ve uncovered fragments of the truth.\nCombine the answers from the challenges into one phrase to reveal the final password:\nEnter the password:\n");
+            printToTerminal("Agent Smith: You’ve uncovered fragments of the truth.\nCombine the answers from the challenges into one phrase to reveal the final password:\nEnter the password:\n");
         } else if (input === fragments.join(" ")) {
-            printToTerminal(`Morpheus: Welcome to the realm of Computer Engineering. You've cracked the code and unlocked your destiny. Your group number is ${userGroup}. Welcome to the Matrix—where the real world is written in code.`);
+            printToTerminal(`Agent Smith: Welcome to the realm of Computer Engineering. You've cracked the code and unlocked your destiny. Your group number is ${userGroup}. Welcome to the Matrix—where the real world is written in code.`);
             // resetGame();
         } else {
-            printToTerminal("Morpheus: Combine the fragments in order, exactly as revealed.\nEnter the password:\n");
+            printToTerminal("Agent Smith: Combine the fragments in order, exactly as revealed.\nEnter the password:\n");
         }
     }
 
