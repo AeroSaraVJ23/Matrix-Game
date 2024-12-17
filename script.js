@@ -1,10 +1,18 @@
+import students from './students.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+    
+
     const output = document.getElementById('output');
     const userInput = document.getElementById('user-input');
     let stage = 1;
     let fragments = [];
     let userNumber = "";
+    let userGroup = null; // Store the user's group number
     matrixEffect();
+    // Fix the terminal height after some point
+    // output.style.maxHeight = "600px";
+    // output.style.overflowY = "auto";
 
     const stages = {
         1: stage1Choice,
@@ -13,16 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Function to print to terminal with typewriter effect
+    let typewriterQueue = Promise.resolve(); // Initialize a queue
+
     function typewriterEffect(text, callback) {
-        let index = 0;
-        const interval = setInterval(() => {
-            output.textContent += text.charAt(index);
-            index++;
-            if (index === text.length) {
-                clearInterval(interval);
-                if (callback) callback();
-            }
-        }, 50); // Adjust the speed of the typewriter effect here
+        typewriterQueue = typewriterQueue.then(() => {
+            return new Promise((resolve) => {
+                let index = 0;
+                const interval = setInterval(() => {
+                    output.textContent += text.charAt(index);
+                    index++;
+                    if (index === text.length) {
+                        clearInterval(interval);
+                        if (callback) callback();
+                        resolve(); // Move to the next queued call
+                    }
+                }, 50); // The speed of the typewriter effect
+            });
+        });
     }
 
     // Function to print to terminal and keep scrolling down
@@ -40,56 +55,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to ask for user registration number
     function askForRegistrationNumber() {
-        printToTerminal("Please enter your registration number: ");
+        printToTerminal("Enter your registration code to decrypt your identity within the Matrix (E/XX/XXX): ");
+    }
+
+    function validateRegistrationNumber(regNum) {
+        let student = students.boys.find(student => student.E_Num === regNum) ||
+                      students.girls.find(student => student.E_Num === regNum);
+        return student || null;
     }
 
     function stage1Choice(input) {
         if (input === "1") {
-            printToTerminal("Morpheus: Welcome to the real world. The truth awaits.\n");
+            printToTerminal("Morpheus: Welcome to the real world. The truth awaits....\n\n");
             stage = 2;
             stage2Challenges();
         } else if (input === "2") {
             printToTerminal("Morpheus: You chose comfort over truth. The game ends here.\n");
             resetGame();
         } else {
-            printToTerminal("Invalid choice. Enter 1 or 2.");
+            printToTerminal("Morpheus: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
         }
     }
 
     function stage2Challenges(input) {
         if (!input) {
-            printToTerminal(`Agent Smith: Solve three puzzles to unlock the truth.\n\nPuzzle 1: Decode this ASCII sequence:\n87 51 49 67 48 77 51\nEnter your answer:\n`);
-        } else if (input === "W31C0ME" && fragments.length === 0) {
-            printToTerminal("Correct! Fragment collected: W31C0ME\n");
-            fragments.push("W31C0ME");
-            printToTerminal(`\nPuzzle 2: Solve the ASCII-based equation:\n(B + E - L) * (M - A) = ?\n`);
+            printToTerminal("Agent Smith: The truth is hidden in the fabric of your machine. Decode this sequence:\n87 51 49 67 48 77 51\nEnter the decoded text:\n");
+        } else if (input === "W31C0M3" && fragments.length === 0) {
+            printToTerminal("Correct! Fragment collected: W31C0M3\n\n");
+            fragments.push("W31C0M3");
+            printToTerminal("Agent Smith: Letters can also be numbers. Solve this:\n(B + E - L) * (M - A) = ?\n");
         } else if (input === "2" && fragments.length === 1) {
-            printToTerminal("Correct! Fragment collected: 2\n");
+            printToTerminal("Correct! Fragment collected: 2\n\n");
             fragments.push("2");
-            printToTerminal(`\nPuzzle 3: Decode the binary:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n`);
+            printToTerminal("Agent Smith: The truth has been scrambled. Correct the binary and decode this:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n");
         } else if (input === "P3R4 C0M" && fragments.length === 2) {
-            printToTerminal("Correct! Fragment collected: P3R4 C0M\n");
+            printToTerminal("Correct! Fragment collected: P3R4 C0M\n\n");
             fragments.push("P3R4 C0M");
             stage = 3;
             stage3Final();
         } else {
-            printToTerminal("Incorrect. Try again.");
+            printToTerminal("Incorrect. Try again.\n");
         }
     }
 
     function stage3Final(input) {
         if (!input) {
-            printToTerminal(`\nMorpheus: Combine all fragments to reveal the final password:\nEnter the password:\n`);
+            printToTerminal("Morpheus: You’ve uncovered fragments of the truth.\nCombine the answers from the challenges into one phrase to reveal the final password:\nEnter the password:\n");
         } else if (input === fragments.join(" ")) {
-            printToTerminal("Morpheus: You’ve unlocked the final truth. Your group number is 42.");
-            resetGame();
+            printToTerminal(`Morpheus: Welcome to the realm of Computer Engineering. You've cracked the code and unlocked your destiny. Your group number is ${userGroup}. Welcome to the Matrix—where the real world is written in code.`);
+            // resetGame();
         } else {
-            printToTerminal("Incorrect. Combine the fragments in the correct order.");
+            printToTerminal("Morpheus: Combine the fragments in order, exactly as revealed.\nEnter the password:\n");
         }
     }
 
     function resetGame() {
-        printToTerminal("\nRestarting the game...");
+        printToTerminal("\nRestarting the game...\n");
         stage = 1;
         fragments = [];
         setTimeout(() => stages[stage](), 1000);
@@ -102,10 +123,16 @@ document.addEventListener('DOMContentLoaded', () => {
             userInput.value = "";
             if (userNumber === "") {
                 // Register the user number
-                userNumber = input;
-                setTerminalPrompt(); // Change the terminal prompt format
-                printToTerminal(`Welcome ${userNumber}! Now the game begins...\n`);
-                stages[stage](); // Start the first stage
+                const student = validateRegistrationNumber(input);
+                if (student) {
+                    userNumber = input;
+                    userGroup = student.group; // Store the group number
+                    setTerminalPrompt(); // Change the terminal prompt format
+                    printToTerminal(`Welcome ${userNumber}! Now the game begins...\n`);
+                    stages[stage](); // Start the first stage
+                } else {
+                    printToTerminal("Code rejected. You are not yet worthy to break through the Matrix. Try again.\n");
+                }
             } else if (stages[stage]) {
                 stages[stage](input); // Handle game input
             }
