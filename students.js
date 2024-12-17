@@ -96,4 +96,10 @@ const students = {
     ]
 };
 
-export default students;
+// export default students;
+// Convert the students object into a JSON string
+const studentsJSON = JSON.stringify(students);
+
+// Encode the JSON string to Base64
+const encodedStudents = btoa(studentsJSON);  // For browser, use `btoa`
+console.log(encodedStudents);

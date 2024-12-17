@@ -1,4 +1,14 @@
-import students from './students.js';
+// import students from './students.js';
+import encodedStudents from './encodedStudents.js';
+// Decoding the Base64 encoded string
+function decodeStudents(encodedData) {
+    const decodedString = atob(encodedData); // Decode the Base64 string
+    return JSON.parse(decodedString); // Parse the decoded string as JSON
+}
+
+// Get the student data by decoding
+const students = decodeStudents(encodedStudents);
+// console.log(students); // Now you have the decoded students data
 
 document.addEventListener('DOMContentLoaded', () => {
     
