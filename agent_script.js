@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (callback) callback();
                         resolve(); // Move to the next queued call
                     }
-                }, 10); // The speed of the typewriter effect
+                }, 30); // The speed of the typewriter effect
             });
         });
     }

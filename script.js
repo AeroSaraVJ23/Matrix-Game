@@ -1,14 +1,15 @@
-// import students from './students.js';
-import encodedStudents from './encodedStudents.js';
-// Decoding the Base64 encoded string
+import { encodedStudents } from './encodedStudents.js';
+
+// Function to decode the Base64 encoded string
 function decodeStudents(encodedData) {
-    const decodedString = atob(encodedData); // Decode the Base64 string
-    return JSON.parse(decodedString); // Parse the decoded string as JSON
+    const decodedString = atob(encodedData); // Decode Base64 string
+    return JSON.parse(decodedString); // Convert to JSON
 }
 
-// Get the student data by decoding
+// Decode the students object
 const students = decodeStudents(encodedStudents);
-// console.log(students); // Now you have the decoded students data
+console.log(students); // Verify the decoded content
+
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (callback) callback();
                         resolve(); // Move to the next queued call
                     }
-                }, 10); // The speed of the typewriter effect
+                }, 30); // The speed of the typewriter effect
             });
         });
     }
@@ -76,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stage1Choice(input) {
         if (input === "1") {
-            printToTerminal("Agent Smith: Welcome to the real world. The truth awaits....\n\n");
+            printToTerminal("Morpheus: Welcome to the real world. The truth awaits....\n\n");
             stage = 2;
             stage2Challenges();
         } else if (input === "2") {
-            printToTerminal("Agent Smith: You chose comfort over truth. The game ends here.\n");
+            printToTerminal("Morpheus: You chose comfort over truth. The game ends here.\n");
             resetGame();
         } else {
-            printToTerminal("Agent Smith: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
+            printToTerminal("Morpheus: You’ve spent your life believing what you’ve been told.\nNow, you stand at the edge of reality. Choose:\n1. Red Pill - Face the truth and step into the real world.\n2. Blue Pill - Return to your illusion.\nEnter your choice (1/2):\n");
         }
     }
 
@@ -97,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (input === "2" && fragments.length === 1) {
             printToTerminal("Correct! Fragment collected: 2\n\n");
             fragments.push("2");
-            printToTerminal("Agent Smith: The truth has been scrambled. Correct the binary and decode this:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n\n(Morpheus: Right shift the binary numbers to reveal the secrets from the world of ASCII)");
+            printToTerminal("Agent Smith: The truth has been scrambled. Correct the binary and decode this:\n10100000 01100110 10100100 01101000 10000110 01100000 10011010\n\n(Morpheus: Right shift the binary numbers once to reveal the secrets from the world of ASCII)");
         } else if (input === "P3R4C0M" && fragments.length === 2) {
-            printToTerminal("Correct! Fragment collected: P3R4 C0M\n\n");
+            printToTerminal("Correct! Fragment collected: P3R4C0M\n\n");
             fragments.push("P3R4C0M");
             stage = 3;
             stage3Final();
