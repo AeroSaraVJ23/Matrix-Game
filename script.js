@@ -6,9 +6,7 @@ function decodeStudents(encodedData) {
   return JSON.parse(decodedString); // Convert to JSON
 }
 
-// Decode the students object
 const students = decodeStudents(encodedStudents);
-console.log(students); // Verify the decoded content
 
 document.addEventListener("DOMContentLoaded", () => {
   const output = document.getElementById("output");
