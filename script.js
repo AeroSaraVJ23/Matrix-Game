@@ -351,7 +351,7 @@ function addMorpheusCharacter(
 
   // Create the Morpheus image
   const morpheusImage = document.createElement("img");
-  morpheusImage.src = "./img/Morpheus.png";
+  morpheusImage.src = "./img/cyberpunk2.png";
   morpheusImage.style.width = "100px";
   morpheusImage.style.height = "auto";
   morpheusContainer.appendChild(morpheusImage);
